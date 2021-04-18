@@ -1,0 +1,45 @@
+.main
+    max-width: 500px
+    margin: auto
+.top
+    display: flex
+    justify-content: space-between
+    img
+      width: 60%
+      &:hover
+          cursor: pointer
+.calendar
+    // width: 500px
+    text-align: center
+    font-size: 20px
+    display: grid
+    grid-template-columns: repeat(7 , calc(100%/7))
+    div
+        padding: 5px 0px
+.grayText
+    opacity: 0.5
+.pointer
+  &:hover
+    cursor: pointer
+.today
+    font-weight: bold
+.past
+  opacity: 0.3
+  &:hover
+    cursor: default
+.sunday
+    color: #df2525
+.grayBackground
+  background-color: #f0f0f0
+  opacity: 1
+.selectedDay
+  color: white
+  background-color: #C60C30
+  font-weight: 700
+  border-radius: 8px
+  opacity: 1
+.stopImg
+  opacity: 0.3
+  img
+    &:hover
+      cursor: default

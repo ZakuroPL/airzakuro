@@ -1,0 +1,122 @@
+<nav class="gGrayBackground gPadding index5" id="topGrayBar">
+  <div id="redDiv" class="gEmiratesFont gPointer">
+    <h2>AirZakuro</h2>
+  </div>
+  <div id="nav" class="gGrayBackground hideMenu" [ngClass]="{showMenu: isShowMenuMain, resizing: isResizing}">
+    <div id="Xdiv"><p class="gPointer" [hidden]="isSearchModule" (click)="isShowMenuMain = false; navEnum = Menu.Zero">&#10006;</p></div>
+    <div [ngClass]="{'hoverNav gPointer': !isSearchModule, arrowUp : navEnum == Menu.Book}" (click)="topMenuClick(Menu.Book, 'book')"><p [hidden]="isSearchModule">{{ 'NAV.BOOK' | translate }}<fa-icon [icon]="faCaretDown"></fa-icon></p></div>
+    <div [ngClass]="{'hoverNav gPointer': !isSearchModule, arrowUp : navEnum == Menu.Manage}" (click)="topMenuClick(Menu.Manage, 'book')"><p [hidden]="isSearchModule">{{ 'NAV.MANAGE' | translate }}<fa-icon [icon]="faCaretDown"></fa-icon></p></div>
+    <div [ngClass]="{'hoverNav gPointer': !isSearchModule, arrowUp : navEnum == Menu.Experience}" (click)="topMenuClick(Menu.Experience, 'book')"><p [hidden]="isSearchModule">{{ 'NAV.EXPERIENCE' | translate }}<fa-icon [icon]="faCaretDown"></fa-icon></p></div>
+    <div [ngClass]="{'hoverNav gPointer': !isSearchModule, arrowUp : navEnum == Menu.WhereWeFly}" (click)="topMenuClick(Menu.WhereWeFly, 'book')"><p [hidden]="isSearchModule">{{ 'NAV.WHERE-WE-FLY' | translate }}<fa-icon [icon]="faCaretDown"></fa-icon></p></div>
+    <div [ngClass]="{'hoverNav gPointer': !isSearchModule, arrowUp : navEnum == Menu.Loyalty}" (click)="topMenuClick(Menu.Loyalty, 'book')"><p [hidden]="isSearchModule">{{ 'NAV.LOYALTY' | translate }}<fa-icon [icon]="faCaretDown"></fa-icon></p></div>
+    <div [ngClass]="{'hoverNav gPointer': !isSearchModule, arrowUp : navEnum == Menu.Help}" (click)="topMenuClick(Menu.Help, 'book')"><p [hidden]="isSearchModule">{{ 'NAV.HELP' | translate }}<fa-icon [icon]="faCaretDown"></fa-icon></p></div>
+    <div id="parentForLanguage">
+      <div class="hoverNav gPointer" [ngClass]="{arrowUp: navEnum == Menu.Language}" (click)="topMenuClick(Menu.Language, '')">
+        <p><fa-icon [icon]="faGlobeAfrica" id="faGlobeAfrica"></fa-icon>{{ languageName | uppercase }}<fa-icon [icon]="faCaretDown"></fa-icon></p>
+      </div>
+    </div>
+  </div>
+  <div id="menuButton" class="gPointer hoverNav" (click)="isShowMenuMain = true; m=''; isResizing = false">
+    {{ 'NAV.MENU' | translate }}
+  </div>
+</nav>
+<!-- submenu for book -->
+<nav class="secondNav hideMenu index5" [ngClass]="{showMenu: navEnum != Menu.Zero, resizing: isResizing}">
+  <div class="secondNavUp">
+    <div class="gPadding extraMenuMargin mobileHeight">
+      <p class="gPointer disabled" [ngClass]="{active: m == 'book'}" (mouseenter) ="mouseEnter('book')" (click)="m='book'">{{ 'NAV1.BOOK' | translate }}</p>
+      <p class="gPointer disabled" [ngClass]="{active: m == 'aboutBook'}" (mouseenter) ="mouseEnter('aboutBook')"(click)="m='aboutBook'">{{ 'NAV1.ABOUT-BOOKING' | translate }}</p>
+      <p class="secondNavUpLastElement" id="extraNavUpLastElement">
+        <a class="gRedButton">{{ 'NAV1.BUTTON' | translate }}</a>
+      </p>
+      <p id="arrowMobileMenu" class="gPointer" (click)="navEnum = Menu.Zero">&#10095;</p>
+    </div>
+  </div>
+  <div class="secondNavDown hideMenu" [ngClass]="{showMenu: m == 'book'}">
+    <div class="firstLineSecondNav extraMenuMargin gPadding">
+      <div class="secondLeft"><span class="gPointer">{{ 'NAV1.BOOK-FLIGHTS' | translate }}</span></div>
+      <div class="secondRight"><span class="gPointer" (click)="navEnum = Menu.Zero">&#10006;</span></div>
+      <p class="arrowMobileMenu2 gPointer" (click)="m=''">&#10095;</p>
+    </div>
+    <div class="gPadding extraMenuMargin secondDown">
+      <ul>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false"><b>{{ 'NAV1.BOOK1' | translate }}</b></li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK2' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK3' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK4' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK5' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK6' | translate }}</li>
+      </ul>
+      <ul>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false"><b>{{ 'NAV1.BOOK2-1' | translate }}</b></li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK2-2' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK2-3' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK2-4' | translate }}</li>
+      </ul>
+      <ul>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false"><b>{{ 'NAV1.BOOK3-1' | translate }}</b></li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK3-2' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK3-3' | translate }}</li>
+      </ul>
+      <ul>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false"><b>{{ 'NAV1.BOOK4-1' | translate }}</b></li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK4-2' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK4-3' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK4-4' | translate }}</li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.BOOK4-5' | translate }}</li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="secondNavDown hideMenu" [ngClass]="{showMenu: m == 'aboutBook'}">
+    <div class="firstLineSecondNav extraMenuMargin gPadding">
+      <div class="secondLeft"><span class="gPointer">{{ 'NAV1.APP' | translate }}</span></div>
+      <div class="secondRight"><span class="gPointer" (click)="navEnum = Menu.Zero">&#10006;</span></div>
+      <p class="arrowMobileMenu2 gPointer" (click)="m=''">&#10095;</p>
+    </div>
+    <div class="gPadding extraMenuMargin secondDown secondDown2columns">
+      <ul>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false"><b>{{ 'NAV1.ONLINE1' | translate }}</b></li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.ONLINE2' | translate }}</li>
+      </ul>
+      <ul>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false"><b>{{ 'NAV1.ONLINE3' | translate }}</b></li>
+        <li (click)="navEnum = Menu.Zero; m=''; isShowMenuMain = false">{{ 'NAV1.ONLINE4' | translate }}</li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<!-- submenu for language -->
+<nav class="secondNav hideMenu index5"  [ngClass]="{showMenu: navEnum == Menu.Language, resizing: isResizing}">
+  <div class="secondNavDown">
+    <div class="firstLineSecondNav extraMenuMargin gPadding">
+      <div class="secondLeft">Choose your language</div>
+      <div class="secondRight"><span class="gPointer" (click)="navEnum = Menu.Zero">&#10006;</span></div>
+    </div>
+    <div class="gPadding extraMenuMargin secondDown">
+      <ul>
+        <li (click)="setUserLanguage('en')" [ngClass]="{bold: languageName == 'en'}">English</li>
+      </ul>
+      <ul>
+        <li (click)="setUserLanguage('pl')" [ngClass]="{bold: languageName == 'pl'}">Polski</li>
+      </ul>
+      <ul>
+        <li (click)="setUserLanguage('zh')" [ngClass]="{bold: languageName == 'zh'}">简体中文</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="underPicture" (mouseenter) ="mouseEnter('')">
+  <div>
+    <img src="../assets/pictures/topFoto.jpeg" class="pictureTop">
+    <div class="gPadding">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <app-loading></app-loading>
+</div>
+<div class="hideDark" [ngClass]="{showDark: isShowMenuMain}"></div>

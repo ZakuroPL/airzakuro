@@ -1,0 +1,13 @@
+<p>Departure: {{ obj.fromAirport }}</p>
+<p>Arrival: {{ obj.toAirport }}</p>
+<p>Departing: {{ obj.dateFrom | date: 'dd/MM/yyyy' }}</p>
+<p>Returning: {{ obj.dateTo | date: 'dd/MM/yyyy' }}</p>
+<p>Tickets: {{ obj.tickets }}</p>
+<p>class: {{ obj.class }}</p>
+<br>
+<button [routerLink]="['']" routerLinkActive="router-link-active">BACK</button>
+
+
+<!-- <p>children:</p>
+<router-outlet></router-outlet> -->
+

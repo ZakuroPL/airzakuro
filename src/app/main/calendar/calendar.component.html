@@ -1,0 +1,48 @@
+<div class="main">
+  <div class="top">
+    <div [ngClass]="{stopImg: clickNum == 0}">
+      <img src="../assets/arrow.png" (click)="minus()">
+    </div>
+    <div>
+      <h2>{{nameOfMonth}} {{selectedYear}}</h2>
+    </div>
+    <div [ngClass]="{stopImg: clickNum > 10}">
+      <img src="../assets/arrow.png" (click)="plus()" align="right" style="transform: rotate(180deg);">
+    </div>
+  </div>
+  <div class="calendar">
+    <div *ngFor="let day of daysOfWeeks">{{ day }}</div>
+    <div *ngFor="let prevkDay of prevDays" (click)="getDayBefore(prevkDay)" class="grayText gPointer"
+    [ngClass]="{past: todayMonth==selectedMonth && todayYear==selectedYear ||
+      todayMonth > selectedMonth && todayYear==selectedYear ||
+      todayYear > selectedYear,
+      selectedDay: prevkDay==sD && sM==selectedMonthPrev && sY==selectedYearPrev ||
+      prevkDay==fD && fM==selectedMonthPrev && fY==selectedYearPrev,
+      grayBackground: (prevkDay + selectedMonthPrev * 100 + selectedYearPrev * 2000) > (fD + fM * 100 + fY * 2000) &&
+      (prevkDay + selectedMonthPrev * 100 + selectedYearPrev * 2000) < (sD + sM * 100 + sY * 2000)
+    }">
+      {{prevkDay}} </div>
+    <div *ngFor="let day of daysOfMonth" (click)="getDay(day)" [ngClass]="{
+      selectedDay: day==fD && fM==selectedMonth && fY==selectedYear ||
+      day==sD && sM==selectedMonth && sY==selectedYear ,
+      today: day==todayDay && todayMonth==selectedMonth && todayYear==selectedYear,
+      sunday: day==sunday1 || day==sunday2 || day==sunday3 || day==sunday4 || day==sunday5,
+      past: day < todayDay && todayMonth==selectedMonth && todayYear==selectedYear ||
+      todayMonth > selectedMonth && todayYear==selectedYear ||
+      todayYear > selectedYear,
+      grayBackground: (day + selectedMonth * 100 + selectedYear * 2000) > (fD + fM * 100 + fY * 2000) &&
+      (day + selectedMonth * 100 + selectedYear * 2000) < (sD + sM * 100 + sY * 2000)
+    }" class="pointer">{{ day }}</div>
+    <div *ngFor="let nextDay of nextDays" class="grayText"  (click)="getDayNext(nextDay)"
+    [ngClass]="{
+      selectedDay: nextDay==sD && sM==selectedMonthNext && sY==selectedYearNext ||
+      nextDay==fD && fM==selectedMonthNext && fY==selectedYearNext ,
+      sunday: nextDay==sundayAfter || nextDay==sundayAfter2,
+      grayBackground: (nextDay + selectedMonthNext * 100 + selectedYearNext * 2000) > (fD + fM * 100 + fY * 2000) &&
+      (nextDay + selectedMonthNext * 100 + selectedYearNext * 2000) < (sD + sM * 100 + sY * 2000)
+    }" style="cursor: pointer;"> {{nextDay}} </div>
+  </div>
+</div>
+
+<!-- day > fD && fM == selectedMonth && fY >= selectedYear &&
+day < sD && selectedMonth <= sM && selectedYear <= sY -->

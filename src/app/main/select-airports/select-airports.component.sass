@@ -1,0 +1,187 @@
+@mixin boxShadow()
+  box-shadow: 0 2px 4px rgb(0 0 0 / 19%)
+@mixin divVisible()
+  visibility: visible
+  z-index: 2
+@mixin divForInput()
+  position: absolute
+  background-color: white
+  width: 100%
+  border: solid 1px #585858
+  border-radius: 4px
+  @include boxShadow()
+  margin-top: 10px
+  &:before
+    content: ""
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    background: url(../../../assets/pictures/arrowUp.svg)
+    width: 22px
+    height: 10px
+    top: -10px
+    z-index: 60
+  h4
+    font-size: 14px
+    width: 100%
+    font-weight: 300
+    border-bottom: 1px solid #949494
+    padding-bottom: 5px
+  h3
+    font-size: 18px
+  span
+    font-weight: 300
+  fa-icon
+    padding: 0px 8px 0px 2px
+.h3
+  font-size: 18px
+  width: 100%
+  font-weight: 300
+  border-bottom: 1px solid #949494
+  padding-bottom: 5px
+  font-weight: bold
+  text-align: center
+.main
+  position: relative
+  top: -40px
+  background-color: white
+  padding: 30px
+  border: 1px solid #d8d8d8
+  border-radius: 0.3rem
+  @include boxShadow()
+  @media screen and (max-width: 1000px)
+    top: -20px
+.whereFly
+  text-align: center
+  font-size: 24px
+  font-weight: bolder
+  padding-bottom: 30px
+.inputs
+  display: grid
+  grid-template-columns: 38% 38% 20%
+  grid-template-rows: auto auto
+  justify-content: space-between
+  row-gap: 20px
+  @media screen and (max-width: 810px)
+    grid-template-columns: 100%
+    grid-template-rows: repeat(6, auto)
+  input
+    width: 100%
+    height: 50px
+    padding: 15px 0px 0px 20px
+    font-size: 20px
+  button
+    width: 100%
+    height: 50px
+.labels
+  position: relative
+  label
+    position: absolute
+    top: 2px
+    left: 10px
+    font-size: 14px
+#secondLabel
+    left: calc(50% + 10px)
+.scrollDiv
+  max-height: 300px
+  overflow-y: auto
+  padding: 10px
+  scrollbar-width: thin
+  scrollbar-color: #949494 white
+  &::-webkit-scrollbar
+    width: 4px
+  &::-webkit-scrollbar-thumb
+    background-color: #949494
+#fromDiv, #toDiv, #dateDiv, #classDiv, #passDiv
+  visibility: hidden
+  @include divForInput()
+  &:active
+    @include divVisible()
+#fromInput
+  &:focus + #fromDiv
+    @include divVisible()
+#toInput
+  &:focus + #toDiv
+    @include divVisible()
+#dateInput, #dateInput2
+  width: 50%
+  border: none
+  &:focus
+    outline: none
+#activeDate
+  position: absolute
+  top: 0px
+  bottom: 0px
+  left: 0px
+  right: 0px
+  opacity: 0
+  z-index: 1
+  &:focus + #dateDiv
+    @include divVisible()
+#classInput
+  &:focus + #classDiv
+    @include divVisible()
+#passInput
+  &:focus + #passDiv
+    @include divVisible()
+#passDiv
+  &:hover
+    @include divVisible()
+  @media screen and (min-width: 811px)
+    width: 130%
+    left: -15%
+#twoDateDiv
+  border-width: 1px
+  border-style: solid
+  border-color: rgb(118, 118, 118)
+  border-image: none
+  border-radius: 3px
+#dateDiv
+  &:hover
+    @include divVisible()
+  @media screen and (max-width: 1000px)
+    width: 120%
+    left: -10%
+
+.divInside
+  display: grid
+  grid-template-columns: auto 60px
+  grid-template-rows: auto auto
+  grid-template-areas: "city abbr" "airportName ."
+  padding-top: 10px
+  h2
+    font-size: 18px
+  h3
+    font-size: 15px
+    font-weight: 300
+.passengerPlusMinus
+  display: grid
+  grid-template-columns: 22px auto 22px
+  padding-top: 10px
+  align-items: center
+  button
+    width: 22px
+    height: 22px
+  p,h3
+    text-align: center
+  p
+    font-size: 14px
+.city
+  grid-area: city
+.airportName
+  grid-area: airportName
+.abbr
+  grid-area: abbr
+  background-color: #C9EBEC
+  justify-self: end
+  text-align: center
+  width: 60px
+  height: min-content
+
+
+
+
+
+
+
+

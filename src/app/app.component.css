@@ -1,0 +1,70 @@
+#nav {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (max-content)[7] auto;
+      grid-template-columns: repeat(7, -webkit-max-content) auto;
+      grid-template-columns: repeat(7, max-content) auto;
+  grid-gap: 2px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#nav div {
+  height: 55px;
+  padding: 0px 8px;
+}
+
+#nav div h2, #nav div p {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+#redDiv {
+  background-color: #D71921;
+  padding: 0px 15px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+#redDiv h2 {
+  font-size: 35px;
+}
+
+.hoverNav {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+}
+
+.hoverNav fa-icon {
+  visibility: hidden;
+  color: #8C8C8C;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.hoverNav:hover {
+  background-color: #212121;
+  cursor: pointer;
+}
+
+.hoverNav:hover fa-icon {
+  visibility: visible;
+}
+
+#language {
+  float: right;
+}
+
+#faGlobeAfrica {
+  padding-right: 8px;
+  position: static;
+  visibility: visible;
+}
+/*# sourceMappingURL=app.component.css.map */

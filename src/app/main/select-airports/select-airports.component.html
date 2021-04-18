@@ -1,0 +1,111 @@
+<div class="main">
+  <p class="whereFly">{{ 'SELECT-AIRPORTS.SEARCH-FLIGHTS' | translate }}</p>
+  <div class="inputs">
+    <div class="labels">
+      <label for="from">{{ 'SELECT-AIRPORTS.DEPARTURE-AIRPORT' | translate }}</label>
+      <input type="text" autocomplete="off" id="fromInput" name="from" [(ngModel)]="inputFromString" (click)="clear('from')">
+      <div id="fromDiv">
+        <div class="scrollDiv">
+          <h4 *ngIf="airportFromLS && airportToLS"><fa-icon [icon]="faHistory"></fa-icon> {{ 'SELECT-AIRPORTS.LAST-SEARCH' | translate }}</h4>
+          <div class="gPointer divInside" *ngIf="airportFromLS && airportToLS" (click)="lastSearch()">
+            <h2 class="city">{{airportFromLS.city}} <span> - </span> {{airportToLS.city}}</h2>
+            <h2 class="abbr">{{airportFromLS.abbr}}</h2>
+          </div>
+          <h4 style="padding-top: 20px"><fa-icon [icon]="faGlobeAfrica"></fa-icon> {{ 'SELECT-AIRPORTS.ALL-LOCATIONS' | translate }}</h4>
+          <div class="gPointer" *ngFor="let airport of airports | airports: inputFromString: ['city', 'country', 'abbr', 'name']; let i = index" (click)="airportFromFunction(airport)">
+            <div class="divInside" *ngIf="airport.abbr != airportToNow">
+              <h2 class="city">{{airport.city}}, <span>{{airport.country}}</span></h2>
+              <h2 class="abbr">{{airport.abbr}}</h2>
+              <h3 class="airportName">{{airport.name}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="labels">
+      <label for="to">{{ 'SELECT-AIRPORTS.ARRIVAL-AIRPORT' | translate }}</label>
+      <input type="text" autocomplete="off" id="toInput" name="to" [(ngModel)]="inputToString" (click)="clear('to')">
+      <div id="toDiv">
+        <div class="scrollDiv">
+          <h4><fa-icon [icon]="faGlobeAfrica"></fa-icon> {{ 'SELECT-AIRPORTS.ALL-LOCATIONS' | translate }}</h4>
+          <div class="gPointer" *ngFor="let airport of airports | airports: inputToString: ['city', 'country', 'abbr', 'name']; let i = index" (click)="airportToFunction(airport)">
+            <div class="divInside" *ngIf="airport.abbr != airportFromNow">
+              <h2 class="city">{{airport.city}}, <span>{{airport.country}}</span></h2>
+              <h2 class="abbr">{{airport.abbr}}</h2>
+              <h3 class="airportName">{{airport.name}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="labels gCursorForReadOnly">
+      <label for="pass">{{ 'SELECT-AIRPORTS.PASSENGERS' | translate }}</label>
+      <input autocomplete="off" class="gPointer" type="text" name="pass" id="passInput" readonly value="{{passengerNum}} {{passString}}">
+      <div id="passDiv">
+        <div class="scrollDiv">
+          <h3 class="h3">{{ 'SELECT-AIRPORTS.PASSENGERS' | translate }}</h3>
+          <p style="color: red; padding: 10px 4px; text-align: center;" *ngIf="isMax">{{ 'SELECT-AIRPORTS.MAX' | translate }}</p>
+          <div class="passengerPlusMinus">
+            <div><button (click)="adultFunction(-1)" [disabled]="adultNum < 2">-</button></div>
+            <div>
+              <h3 *ngIf="adultNum < 2">{{adultNum}} {{ 'SELECT-AIRPORTS.ADULT' | translate }}</h3>
+              <h3 *ngIf="adultNum > 1">{{adultNum}} {{ 'SELECT-AIRPORTS.ADULTS' | translate }}</h3>
+              <p>{{ 'SELECT-AIRPORTS.AGES' | translate }} 12+</p>
+            </div>
+            <div><button (click)="adultFunction(1)" [disabled]="passengerNum > 5">+</button></div>
+          </div>
+          <div class="passengerPlusMinus">
+            <div><button (click)="childFunction(-1)" [disabled]="childNum < 1">-</button></div>
+            <div>
+              <h3 *ngIf="childNum < 2">{{childNum}} {{ 'SELECT-AIRPORTS.CHILD' | translate }}</h3>
+              <h3 *ngIf="childNum > 1">{{childNum}} {{ 'SELECT-AIRPORTS.CHILDREN' | translate }}</h3>
+              <p>{{ 'SELECT-AIRPORTS.AGES' | translate }} 2 - 11</p>
+            </div>
+            <div><button (click)="childFunction(1)" [disabled]="passengerNum > 5">+</button></div>
+          </div>
+          <div class="passengerPlusMinus">
+            <div><button (click)="infantFunction(-1)" [disabled]="infantdNum < 1">-</button></div>
+            <div>
+              <h3>{{infantdNum}} {{ 'SELECT-AIRPORTS.INFANT' | translate }}</h3>
+              <p style="padding: 0px 8px;">{{ 'SELECT-AIRPORTS.AGE-UNDER' | translate }}</p>
+            </div>
+            <div><button (click)="infantFunction(1)" [disabled]="infantdNum > 0">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="labels" id="twoDateDiv">
+      <label for="date">{{ 'SELECT-AIRPORTS.DEPARTING' | translate }}</label>
+      <input autocomplete="off" type="text" name="date" id="dateInput" [ngModel]="dateFrom | date: 'dd/MM/yyyy'">
+      <label for="date" id="secondLabel">{{ 'SELECT-AIRPORTS.RETURNING' | translate }}</label>
+      <input autocomplete="off" type="text" name="date" id="dateInput2" [ngModel]="dateTo | date: 'dd/MM/yyyy'">
+      <input autocomplete="off" id="activeDate" class="gPointer" readonly>
+      <div id="dateDiv">
+        <div class="scrollDiv">
+          <app-calendar
+          (finalFromDate)="calendarFrom($event)"
+          (finalToDate)="calendarTo($event)">
+        </app-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="labels">
+      <label for="class">{{ 'SELECT-AIRPORTS.ALL-CLASSES' | translate }}</label>
+      <input autocomplete="off" class="gPointer" type="text" name="class" id="classInput" readonly value="{{classString}}">
+      <div id="classDiv">
+        <div class="scrollDiv">
+          <h4>All Classes</h4>
+          <h3 style="padding-top: 7px" class="gPointer" (click)="classFunction('ECONOMY-CLASS')">{{ 'SELECT-AIRPORTS.ECONOMY-CLASS' | translate }}</h3>
+          <h3 style="padding-top: 7px" class="gPointer" (click)="classFunction('BUSINESS-CLASS')">{{ 'SELECT-AIRPORTS.BUSINESS-CLASS' | translate }}</h3>
+          <h3 style="padding-top: 7px" class="gPointer" (click)="classFunction('FIRST-CLASS')">{{ 'SELECT-AIRPORTS.FIRST-CLASS' | translate }}</h3>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="gRedButton" (click)="buttonFunction()">{{ 'NAV1.BUTTON' | translate}}</button>
+    </div>
+  </div>
+</div>
+
+
+
