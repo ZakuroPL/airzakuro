@@ -64,7 +64,7 @@ export class CalendarComponent implements OnInit {
       this.changeLanguage();
       this.getDaysOfMonth();
       this.nameForSelectedMonth();
-      let date:Date = new Date(this.selectedYear, this.selectedMonth, 1);
+      const date:Date = new Date(this.selectedYear, this.selectedMonth, 1);
       this.getPrevNext(date);
     }
     changeLanguage(){
@@ -97,10 +97,10 @@ export class CalendarComponent implements OnInit {
       this.daysOfMonth = [];
       this.prevDays = [];
       this.nextDays = [];
-      let numbertodayMonth:number = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
+      const numbertodayMonth:number = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
       let numberPrevMonth:number = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
-      let daysBefore:number = new Date(this.selectedYear, this.selectedMonth, 0).getDay();
-      let daysAfter:number = new Date(this.selectedYear, this.selectedMonth + 1, 1).getDay();
+      const daysBefore:number = new Date(this.selectedYear, this.selectedMonth, 0).getDay();
+      const daysAfter:number = new Date(this.selectedYear, this.selectedMonth + 1, 1).getDay();
       let i:number = 0;
       let next:number = 0;
       while(this.prevDays.length < daysBefore){
@@ -132,7 +132,7 @@ export class CalendarComponent implements OnInit {
     minus(){
       if(this.clickNum > 0){
         this.clickNum--;
-        let date:Date = new Date(this.selectedYear, this.selectedMonth - 1, 1)
+        const date:Date = new Date(this.selectedYear, this.selectedMonth - 1, 1)
         this.selectedMonth = date.getMonth();
         this.selectedYear = date.getFullYear();
 
@@ -144,7 +144,7 @@ export class CalendarComponent implements OnInit {
     plus(){
       if(this.clickNum < 11){
         this.clickNum++;
-        let date:Date = new Date(this.selectedYear, this.selectedMonth + 1, 1)
+        const date:Date = new Date(this.selectedYear, this.selectedMonth + 1, 1)
         this.selectedMonth = date.getMonth();
         this.selectedYear = date.getFullYear();
 
@@ -166,16 +166,15 @@ export class CalendarComponent implements OnInit {
       this.selectDate();
     }
     getPrevNext(date:Date){
-      let prevDate:Date = new Date(date.getFullYear(), date.getMonth() - 1, 1)
+      const prevDate:Date = new Date(date.getFullYear(), date.getMonth() - 1, 1)
       this.selectedMonthPrev = prevDate.getMonth();
       this.selectedYearPrev = prevDate.getFullYear();
-      let nextDate:Date = new Date(date.getFullYear(), date.getMonth() + 1, 1)
+      const nextDate:Date = new Date(date.getFullYear(), date.getMonth() + 1, 1)
       this.selectedMonthNext = nextDate.getMonth();
       this.selectedYearNext = nextDate.getFullYear();
     }
     selectDate(){
-      if(this.clickedFullDate.getMonth() == this.todayMonth  && this.clickedFullDate.getDate() >= this.todayDay ||
-      this.clickedFullDate.getMonth() > this.todayMonth){
+      if(this.clickedFullDate >= new Date()){
         this.isFirst = !this.isFirst;
         if(!this.isFirst && this.clickedFullDate > this.firstDate) {
           this.secondDate = this.clickedFullDate;
